@@ -1,6 +1,6 @@
 import { request } from '@/api/service'
 import XEUtils from 'xe-utils'
-export const urlPrefix = '/api/system/dictionary/'
+export const urlPrefix = '/api/system/dictionary1/'
 
 /**
  * 列表查询
