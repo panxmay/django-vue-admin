@@ -182,6 +182,54 @@ export const crudOptions = (vm) => {
       }
     },
     {
+      title: '多选,本地,自动染色',
+      key: 'multi666',
+      sortable: true,
+      width: 180,
+      search: {
+        disabled: false,
+        title: '多选',
+        itemProps: { // 单独设置labelWidth
+          labelWidth: '50px'
+        },
+        component: {
+          props: {
+            elProps: {
+              // filterable: false
+            }
+          },
+          events: {
+            clear: () => {
+              console.log('test111')
+            },
+            blur: () => {
+              console.log('test22')
+            }
+          }
+        }
+      },
+      type: 'select',
+      form: {
+        title: '多选本地',
+        component: {
+          props: {
+            filterable: true,
+            multiple: true,
+            clearable: true
+          }
+        }
+      },
+      dict: {
+        data: [
+          { value: 'item_key1', label: '深圳', color: 'success' },
+          { value: 'item_key2', label: '广州' },
+          { value: 'item_key3', label: '武汉' },
+          { value: 'item_key4', label: '上海' },
+          { value: 'item_key5', label: '北京', color: 'danger' }]
+      },
+      component: { props: { color: 'auto' } } // 自动染色
+    },
+    {
       title: '排序',
       key: 'sort',
       width: 90,

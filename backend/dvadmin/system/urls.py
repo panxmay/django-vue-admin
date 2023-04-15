@@ -5,6 +5,7 @@ from dvadmin.system.views.api_white_list import ApiWhiteListViewSet
 from dvadmin.system.views.area import AreaViewSet
 from dvadmin.system.views.dept import DeptViewSet
 from dvadmin.system.views.dictionary import DictionaryViewSet
+from dvadmin.system.views.dictionary1 import Dictionary1ViewSet
 from dvadmin.system.views.file_list import FileViewSet
 from dvadmin.system.views.login_log import LoginLogViewSet
 from dvadmin.system.views.menu import MenuViewSet
@@ -23,6 +24,7 @@ system_url.register(r'dept', DeptViewSet)
 system_url.register(r'user', UserViewSet)
 system_url.register(r'operation_log', OperationLogViewSet)
 system_url.register(r'dictionary', DictionaryViewSet)
+system_url.register(r'dictionary1', Dictionary1ViewSet)
 system_url.register(r'area', AreaViewSet)
 system_url.register(r'file', FileViewSet)
 system_url.register(r'api_white_list', ApiWhiteListViewSet)
