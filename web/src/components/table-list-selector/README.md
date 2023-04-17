@@ -52,7 +52,7 @@
                 },
                 {
                   field: "dept",
-                  title: "部门Id",
+                  title: "团队Id",
                 },
 
               ]

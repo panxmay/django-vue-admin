@@ -66,12 +66,12 @@ export const crudOptions = (vm) => {
     },
     columns: [
       {
-        title: '关键词',
+        title: '新实体',
         key: 'search',
         show: false,
         disabled: true,
         search: {
-          disabled: false
+          disabled: true
         },
         form: {
           disabled: true,
@@ -79,7 +79,7 @@ export const crudOptions = (vm) => {
             props: {
               clearable: true
             },
-            placeholder: '请输入关键词'
+            placeholder: '请输入新实体'
           }
         },
         view: {
@@ -112,7 +112,7 @@ export const crudOptions = (vm) => {
           }
         },
         form: {
-          helper: '默认留空为创建者的团队',
+          helper: '默认留空为创建者的部门',
           component: {
             span: 12,
             props: {
@@ -127,7 +127,7 @@ export const crudOptions = (vm) => {
         sortable: true,
         treeNode: true, // 设置为树形列
         search: {
-          disabled: false,
+          disabled: true,
           component: {
             props: {
               clearable: true
@@ -154,7 +154,7 @@ export const crudOptions = (vm) => {
         }
       },
       {
-        title: '部门标识',
+        title: '团队标识',
         key: 'key',
         sortable: true,
         form: {
@@ -183,7 +183,6 @@ export const crudOptions = (vm) => {
           }
         }
       },
-      
       {
         title: '联系电话',
         key: 'phone',
@@ -234,22 +233,100 @@ export const crudOptions = (vm) => {
         }
       },
       {
-        title: '状态',
-        key: 'status',
+        title: '最大展示节点数',
+        key: 'method1',
         sortable: true,
         search: {
           disabled: false
         },
-        width: 90,
-        type: 'radio',
+        type: 'select',
         dict: {
-          data: vm.dictionary('button_status_bool')
+          data: [
+            {
+              label: '100',
+              value: 0
+            },
+            {
+              label: '500',
+              value: 1
+            },
+            {
+              label: '1000',
+              value: 2
+            },
+            {
+              label: '5000',
+              value: 3
+            },
+            {
+              label: '10000',
+              value: 3
+            },
+            {
+              label: '10000',
+              value: 3
+            }
+          ]
         },
         form: {
-          value: true,
+          rules: [ // 表单校验规则
+            {
+              required: true,
+              message: '必填项'
+            }
+          ],
           component: {
-            span: 12,
-            placeholder: '请选择状态'
+            span: 12
+          },
+          itemProps: {
+            class: { yxtInput: true }
+          }
+        }
+      },
+      {
+        title: '最大展示深度',
+        key: 'method2',
+        sortable: true,
+        search: {
+          disabled: false
+        },
+        type: 'select',
+        dict: {
+          data: [
+            {
+              label: '2',
+              value: 0
+            },
+            {
+              label: '3',
+              value: 1
+            },
+            {
+              label: '4',
+              value: 2
+            },
+            {
+              label: '5',
+              value: 3
+            },
+            {
+              label: '6',
+              value: 3
+            }
+          ]
+        },
+        form: {
+          rules: [ // 表单校验规则
+            {
+              required: true,
+              message: '必填项'
+            }
+          ],
+          component: {
+            span: 12
+          },
+          itemProps: {
+            class: { yxtInput: true }
           }
         }
       }

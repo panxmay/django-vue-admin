@@ -7,6 +7,8 @@ from django.db import models
 from application import dispatch
 from dvadmin.utils.models import CoreModel, table_prefix
 
+from multiselectfield import MultiSelectField
+
 STATUS_CHOICES = (
     (0, "禁用"),
     (1, "启用"),
@@ -106,6 +108,7 @@ class Dept(CoreModel):
     key = models.CharField(max_length=64, unique=True,null=True,blank=True, verbose_name="关联字符", help_text="关联字符")
     sort = models.IntegerField(default=1, verbose_name="显示排序", help_text="显示排序")
     owner = models.CharField(max_length=32, verbose_name="负责人", null=True, blank=True, help_text="负责人")
+    creater = models.CharField(max_length=32, verbose_name="负责人", null=True, blank=True, help_text="负责人")
     phone = models.CharField(max_length=32, verbose_name="联系电话", null=True, blank=True, help_text="联系电话")
     email = models.EmailField(max_length=32, verbose_name="邮箱", null=True, blank=True, help_text="邮箱")
     status = models.BooleanField(default=True, verbose_name="部门状态", null=True, blank=True, help_text="部门状态")
@@ -457,3 +460,150 @@ class MessageCenterTargetUser(CoreModel):
         db_table = table_prefix + "message_center_target_user"
         verbose_name = "消息中心目标用户表"
         verbose_name_plural = verbose_name
+
+class ModelsIn(CoreModel):
+    label = models.CharField(max_length=100, blank=True, null=True, verbose_name="模型名称", help_text="模型名称")
+    url = models.CharField(max_length=200, blank=True, null=True, verbose_name="接口地址", help_text="接口地址")
+    METHOD_CHOICES = (
+        (0, "GET"),
+        (1, "POST"),
+        (2, "PUT"),
+        (3, "DELETE"),
+    )
+    method = models.IntegerField(default=0, verbose_name="接口请求方法", null=True, blank=True, help_text="接口请求方法")
+    METHOD_CHOICES = (
+        (0, "Tree"),
+        (1, "DAG"),
+        (2, "Encoder"),
+        (3, "Matching Model"),
+    )
+    model_type = models.IntegerField(default=0, verbose_name="模型类型", null=True, blank=True, help_text="模型类型")
+    METHOD_CHOICES = (
+        (0, "state"),
+        (1, "predict"),
+        (2, "params"),
+    )
+    inter_type = models.IntegerField(default=0, verbose_name="接口", null=True, blank=True, help_text="接口类型")
+    METHOD_CHOICES = (
+        (0, "is_avaliable"),
+        (1, "busy"),
+        (2, "null"),
+    )
+    state = models.IntegerField(default=0, verbose_name="接口", null=True, blank=True, help_text="接口类型")
+    enable_datasource = models.BooleanField(default=True, verbose_name="激活数据权限", help_text="激活数据权限", blank=True)
+    project = models.CharField(max_length=100, blank=True, null=True, verbose_name="授权项目", help_text="项目名称")
+    status = models.BooleanField(default=True, verbose_name="状态", help_text="状态")
+    sort = models.IntegerField(default=1, verbose_name="显示排序", null=True, blank=True, help_text="显示排序")
+    remark = models.CharField(max_length=2000, blank=True, null=True, verbose_name="备注", help_text="备注")
+    pro_name = models.ManyToManyField(to="ProManage", blank=True,verbose_name="授权项目", db_constraint=False, help_text="授权项目")
+    MY_CHOICES = (('0', '项目1'),
+                  ('2', '项目2'),
+                  ('3', '项目3'),
+                  ('4', '项目4'),
+                  ('5', '项目5'))
+    multi666 = MultiSelectField(choices=MY_CHOICES, max_choices=5, max_length=999, blank=True, null=True, verbose_name="授权项目", help_text="项目名称")
+
+    class Meta:
+        db_table = table_prefix + "model_manage"
+        verbose_name = "模型接口管理"
+        verbose_name_plural = verbose_name
+        ordering = ("sort",)
+
+class ProManage(CoreModel):
+    # taxo = models.CharField(max_length=100, blank=True, null=True, verbose_name="Taxonomy名称", help_text="Taxonomy名称") 
+    # enable_datasource = models.BooleanField(default=True, verbose_name="激活数据权限", help_text="激活数据权限", blank=True)
+    label = models.CharField(max_length=100, blank=True, null=True, verbose_name="项目名称", help_text="项目名称")
+    creator = models.CharField(max_length=100, blank=True, null=True, verbose_name="创建人", help_text="创建人")
+    # creater_team = models.CharField(max_length=100, blank=True, null=True, verbose_name="创建人团队", help_text="创建人团队")
+    # user = models.ForeignKey(
+    #     to="Users",
+    #     verbose_name="创建人",
+    #     on_delete=models.PROTECT,
+    #     db_constraint=False,
+    #     null=True,
+    #     blank=True,
+    #     help_text="创建人",
+    # )
+    # dept = models.ForeignKey(
+    #     to="Dept",
+    #     verbose_name="创建人团队",
+    #     on_delete=models.PROTECT,
+    #     db_constraint=False,
+    #     null=True,
+    #     blank=True,
+    #     help_text="创建人团队",
+    # )
+    
+    # teams = models.ManyToManyField(to="Dept", blank=True,verbose_name="授权团队", db_constraint=False, help_text="授权团队")
+    # MY_CHOICES = (('0', '团队-测试'),
+    #               ('1', '团队1'),
+    #               ('2', '团队2'))
+    # multi666 = MultiSelectField(choices=MY_CHOICES, max_choices=5, max_length=999, blank=True, null=True, verbose_name="=授权团队", help_text="授权团队")
+    # team = models.IntegerField(choices=MY_CHOICES,default=0, verbose_name="创建人团队", null=True, blank=True, help_text="创建人团队")
+    # status = models.BooleanField(default=True, verbose_name="状态", help_text="状态")
+    # sort = models.IntegerField(default=1, verbose_name="显示排序", null=True, blank=True, help_text="显示排序")
+    # remark = models.CharField(max_length=2000, blank=True, null=True, verbose_name="备注", help_text="备注")
+    
+    class Meta:
+        db_table = table_prefix + "pro_manage"
+        verbose_name = "项目管理"
+        verbose_name_plural = verbose_name
+        # ordering = ("sort",)
+
+
+class TaxoUpdate(CoreModel):
+    predict = models.CharField(max_length=100, blank=True, null=True, verbose_name="预测", help_text="预测")
+    entity = models.CharField(max_length=100, blank=True, null=True, verbose_name="新实体", help_text="新实体")
+    METHOD_CHOICES = (
+        (0, "MILITARY1"),
+        (1, "MILITARY2"),
+        (2, "MILITARY3"),
+    )
+    taxo = models.IntegerField(default=0, verbose_name="Taxonomy名称", null=True, blank=True, help_text="Taxonomy名称")
+    METHOD_CHOICES = (
+        (1, "word2vec"),
+        (1, "bert"),
+        (2, "Graph"),
+        (0, "混合编码器"),
+    )
+    encoder1 = models.IntegerField(default=0, verbose_name="编码器", null=True, blank=True, help_text="编码器")
+    METHOD_CHOICES = (
+        (0, "TC-SMG1"),
+        (2, "Bilinear"),
+        (3, "TMN"),
+        (4, "TaxoEnrich"),
+        (1, "TC-SMG2"),
+    )
+    model1 = models.IntegerField(default=0, verbose_name="位置匹配模型", null=True, blank=True, help_text="位置匹配模型")
+    context = models.CharField(max_length=512, blank=True, null=True, verbose_name="实体上下文", help_text="实体上下文")
+    # encoder = models.ForeignKey(
+    #     to="ModelsIn",
+    #     verbose_name="编码器",
+    #     on_delete=models.PROTECT,
+    #     db_constraint=False,
+    #     null=True,
+    #     blank=True,
+    #     help_text="编码器",
+    # )
+    # model = models.ForeignKey(
+    #     to="ModelsIn",
+    #     verbose_name="位置匹配模型",
+    #     on_delete=models.PROTECT,
+    #     db_constraint=False,
+    #     null=True,
+    #     blank=True,
+    #     help_text="位置匹配模型",
+    # )
+    hyper = models.CharField(max_length=100, blank=True, null=True, verbose_name="候选上位词", help_text="候选上位词") 
+    hypo = models.CharField(max_length=100, blank=True, null=True, verbose_name="候选下位词", help_text="候选下位词") 
+    score1 = models.DecimalField(default=0, verbose_name="候选下位词置信度", null=True, blank=True, help_text="候选上位词置信度",max_digits=4, decimal_places=3) 
+    score2 = models.DecimalField(default=0, blank=True, null=True, verbose_name="Taxonomy名称", help_text="候选下位词置信度",max_digits=4, decimal_places=3) 
+    status = models.BooleanField(default=True, verbose_name="状态", help_text="状态")
+    sort = models.IntegerField(default=1, verbose_name="显示排序", null=True, blank=True, help_text="显示排序")
+    remark = models.CharField(max_length=2000, blank=True, null=True, verbose_name="备注", help_text="备注")
+    
+    class Meta:
+        db_table = table_prefix + "taxo_update"
+        verbose_name = "taxonomy更新表"
+        verbose_name_plural = verbose_name
+        ordering = ("sort",)

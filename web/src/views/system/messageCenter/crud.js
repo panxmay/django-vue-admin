@@ -98,7 +98,7 @@ export const crudOptions = (vm) => {
         show () {
           return vm.tabActivted === 'send'
         },
-        dict: { data: [{ value: 0, label: '按用户' }, { value: 1, label: '按角色' }, { value: 2, label: '按部门' }, { value: 3, label: '通知公告' }] },
+        dict: { data: [{ value: 0, label: '按用户' }, { value: 1, label: '按角色' }, { value: 2, label: '按团队' }, { value: 3, label: '通知公告' }] },
         form: {
           component: {
             span: 24,
@@ -254,7 +254,7 @@ export const crudOptions = (vm) => {
         }
       },
       {
-        title: '目标部门',
+        title: '目标团队',
         key: 'target_dept',
         search: {
           disabled: true
@@ -307,7 +307,7 @@ export const crudOptions = (vm) => {
                 columns: [
                   {
                     field: 'name',
-                    title: '部门名称',
+                    title: '团队名称',
                     treeNode: true
                   },
                   {
@@ -316,7 +316,7 @@ export const crudOptions = (vm) => {
                   },
                   {
                     field: 'parent_name',
-                    title: '父级部门'
+                    title: '父级团队'
                   }
                 ]
               }

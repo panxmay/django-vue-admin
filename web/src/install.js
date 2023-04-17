@@ -300,7 +300,7 @@ Vue.prototype.commonEndColumns = function (param = {}) {
       }
     },
     {
-      title: '所属部门',
+      title: '所属团队',
       key: 'dept_belong_id',
       show: showData.dept_belong_id.showTable,
       width: 150,

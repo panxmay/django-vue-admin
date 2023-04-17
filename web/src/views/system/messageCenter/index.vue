@@ -47,6 +47,7 @@ export default {
       return crudOptions(this)
     },
     pageRequest (query) {
+      console.trace('pageRequest')
       if (this.tabActivted === 'receive') {
         return GetSelfReceive({ ...query })
       }

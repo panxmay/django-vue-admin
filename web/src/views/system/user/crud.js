@@ -172,7 +172,7 @@ export const crudOptions = (vm) => {
         }
       },
       {
-        title: '部门',
+        title: '团队',
         key: 'dept',
         search: {
           disabled: true

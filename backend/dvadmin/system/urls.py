@@ -14,6 +14,9 @@ from dvadmin.system.views.operation_log import OperationLogViewSet
 from dvadmin.system.views.role import RoleViewSet
 from dvadmin.system.views.system_config import SystemConfigViewSet
 from dvadmin.system.views.user import UserViewSet
+from dvadmin.system.views.ProManage import ProManageViewSet
+from dvadmin.system.views.TaxoUpdate import TaxoUpdateViewSet
+from dvadmin.system.views.ModelsIn import ModelsInViewSet
 
 system_url = routers.SimpleRouter()
 system_url.register(r'menu', MenuViewSet)
@@ -23,11 +26,17 @@ system_url.register(r'dept', DeptViewSet)
 system_url.register(r'user', UserViewSet)
 system_url.register(r'operation_log', OperationLogViewSet)
 system_url.register(r'dictionary', DictionaryViewSet)
+system_url.register(r'proManage', ProManageViewSet)
+system_url.register(r'taxo_update', TaxoUpdateViewSet)
+system_url.register(r'models_in', ModelsInViewSet)
 system_url.register(r'area', AreaViewSet)
 system_url.register(r'file', FileViewSet)
 system_url.register(r'api_white_list', ApiWhiteListViewSet)
 system_url.register(r'system_config', SystemConfigViewSet)
 system_url.register(r'message_center',MessageCenterViewSet)
+system_url.register(r'taxVisual', DictionaryViewSet)
+system_url.register(r'taxSearch', DictionaryViewSet)
+system_url.register(r'taxUpdate', RoleViewSet)
 
 urlpatterns = [
     path('system_config/save_content/', SystemConfigViewSet.as_view({'put': 'save_content'})),

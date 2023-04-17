@@ -35,7 +35,7 @@
               <el-form-item label="用户名" prop="dept">
                 <el-input :value="userInfo.username" clearable disabled></el-input>
               </el-form-item>
-              <el-form-item label="所属部门" prop="dept">
+              <el-form-item label="所属团队" prop="dept">
                 <el-input :value="userInfo.dept_info && userInfo.dept_info.dept_name" clearable disabled></el-input>
               </el-form-item>
               <el-form-item label="当前角色" prop="role">
